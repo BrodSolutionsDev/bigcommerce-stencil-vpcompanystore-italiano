@@ -1,0 +1,211 @@
+{{#partial "page"}}
+<main class="getStarted">
+  <section class="getStarted-tagline">
+    <h1>Get Started</h1>
+    <p><strong>Let's create something awesome together! Give us some details below, and we'll reach out to you ASAP. Or
+        call us now: <a href="tel:8668642602">(866) 864-2602</a></strong></p>
+  </section>
+
+  <form id="contact-form" class="getStarted-form">
+    <section>
+      <div>
+        <p>
+          <label for="nameInput">
+            <span>Name: </span>
+            <strong><abbr title="This field is required">*</abbr></strong>
+          </label>
+          <input type="text" name="Name" id="nameInput" required>
+        </p>
+
+        <p>
+          <label for="practiceName">
+            <span>Practice Name: </span>
+            <strong><abbr title="This field is required">*</abbr></strong>
+          </label>
+          <input type="text" name="Practice Name" id="practiceName" required>
+        </p>
+      </div>
+
+      <div>
+        <p>
+          <label for="email">
+            <span>Email: </span>
+            <strong><abbr title="This field is required">*</abbr></strong>
+          </label>
+          <input type="email" name="Email" id="email" required>
+        </p>
+        
+        <p>
+          <label for="phone">
+            <span>Phone Number: </span>
+            <strong><abbr title="This field is required">*</abbr></strong>
+          </label>
+          <input type="text" name="Phone" id="phone" required>
+        </p>
+      </div>
+
+      <div>
+        <p>
+          <label for="quantity">
+            <span>Quantity: </span>
+            <strong><abbr title="This field is required">*</abbr></strong>
+          </label>
+          <input type="number" name="Quantity" id="quantity" required>
+        </p>
+
+        <p>
+          <label for="dateNeeded">
+            <span>Date Needed: </span>
+            <strong><abbr title="This field is required">*</abbr></strong>
+          </label>
+          <input type="date" name="Date Needed" id="dateNeeded" required>
+        </p>
+      </div>
+
+      <p>
+        <label for="moreInfo">
+          <span>Tell us a little bit more about your project and goals: </span>
+          <strong><abbr title="This field is required">*</abbr></strong>
+        </label>
+        <textarea name="More Info" id="moreInfo" cols="30" rows="10" required></textarea>
+      </p>
+    </section>
+    <section>
+      <p>
+        <button type="submit" onclick="sendEmail()">Send</button>
+      </p>
+    </section>
+    <section>
+      <abbr>*</abbr>
+      <span>Fields are required.</span>
+    </section>
+
+    <div id="thankyou-popup">
+      <p><strong>Thank you for reaching out to us! We'll get back with you as soon as possible.</strong></p>
+    </div>
+  </form>
+</main>
+{{/partial}}
+
+{{> layout/base }}
+
+<!-- Input fill events -->
+<script>
+  function sendEmail() {
+    const inputs = document.querySelectorAll('input');
+    const textarea = document.querySelector('textarea');
+    const name = document.querySelector('#nameInput');
+    const email = document.querySelector('#email');
+    const companyName = document.querySelector('#companyName');
+    const budget = document.querySelector('#budget');
+    const dateNeeded = document.querySelector('#dateNeeded');
+    const phone = document.querySelector('#phone');
+    const moreInfo = document.querySelector('#moreInfo');
+    const form = document.querySelector('#contact-form');
+    const popup = document.querySelector('#thankyou-popup');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      fetch('https://eo88cyvg4cazfwd.m.pipedream.net', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: nameInput.value,
+          practiceName: practiceName.value,
+          email: email.value,
+          phone: phone.value,
+          quantity: quantity.value,
+          dateNeeded: new Date(dateNeeded.value).toUTCString().replace(' 00:00:00 GMT', ''),
+          moreInfo: moreInfo.value,
+          // image: "https://cdn11.bigcommerce.com/s-8jdcsc0a2j/product_images/uploaded_images/logo.png?t=1647886062&_gl=1*7gi1ad*_ga*MTkxMjc4NTk4OC4xNjQ1MzA0Nzcz*_ga_WS2VZYPC6G*MTY0Nzg4MzIzMi4xMDAuMS4xNjQ3ODg1OTI5LjQw"
+        })
+      });
+
+      for (var i = 0; i < inputs.length; i++) {
+        inputs[i].style.background = 'transparent';
+        inputs[i].style.fontWeight = '400';
+      }
+
+      textarea.style.background = 'transparent';
+
+      popup.style.display = "flex";
+
+      form.reset();
+    });
+  }
+</script>
+
+<script>
+  (function () {
+    const inputs = document.querySelectorAll('input');
+    const textarea = document.querySelector('textarea');
+    // Click outside of input
+    document.addEventListener('click', function (e) {
+      var isClickInsideTextarea = textarea.contains(e.target);
+
+      // Each input
+      for (var i = 0; i < inputs.length; i++) {
+        var isClickInsideInput = inputs[i].contains(e.target);
+        if (!isClickInsideInput) {
+          if (inputs[i].value) {
+            inputs[i].style.background = 'rgba(0, 124, 168, .1)';
+            inputs[i].style.fontWeight = 'bold';
+            inputs[i].style.transition = 'all .1s ease-in-out';
+          }
+        }
+        else {
+          inputs[i].style.background = 'transparent';
+        }
+      }
+
+      // Textarea
+      if (!isClickInsideTextarea) {
+        if (textarea.value) {
+          textarea.style.background = 'rgba(0, 124, 168, .1)';
+          textarea.style.fontWeight = 'bold';
+          textarea.style.transition = 'all .1s ease-in-out';
+        }
+      }
+      else {
+        textarea.style.background = 'transparent';
+      }
+    });
+
+    // Tab out of input
+    document.addEventListener('keyup', function (e) {
+      var isClickInsideTextarea = textarea.contains(e.target);
+
+      if (e.keyCode == 9) { // if tab is clicked
+        // Each input
+        for (var i = 0; i < inputs.length; i++) {
+          var isClickInsideInput = inputs[i].contains(e.target);
+          if (!isClickInsideInput) {
+            if (inputs[i].value) {
+              inputs[i].style.background = 'rgba(0, 124, 168, .1)';
+              inputs[i].style.fontWeight = 'bold';
+              inputs[i].style.transition = 'all .1s ease-in-out';
+            }
+          }
+          else {
+            inputs[i].style.background = 'transparent';
+          }
+        }
+      }
+
+      // Textarea
+      if (!isClickInsideTextarea) {
+        if (textarea.value) {
+          textarea.style.background = 'rgba(0, 124, 168, .1)';
+          textarea.style.fontWeight = 'bold';
+          textarea.style.transition = 'all .1s ease-in-out';
+        }
+      }
+      else {
+        textarea.style.background = 'transparent';
+      }
+    });
+  })()
+</script>

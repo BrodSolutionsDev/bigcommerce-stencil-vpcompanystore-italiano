@@ -1,0 +1,64 @@
+.productView {
+  position: relative;
+}
+
+.productView-images {
+  position: sticky;
+  @media only screen and (min-width: 768px) {
+    top: 80px;
+  }
+}
+
+.productView-title {
+  margin-bottom: 0;
+}
+
+.productView-shortDescription {
+  margin-top: 20px;
+}
+
+.price,
+.productView-title {
+  color: $green !important;
+}
+
+.productView-price {
+  border-bottom: none !important;
+}
+.productView-price,
+.productView-product {
+  padding-bottom: 0 !important;
+}
+
+.productView-options {
+  max-width: unset;
+}
+
+@media screen and (max-width: 1023px) {
+  .productView-options .product-other-actions {
+    margin-top: 16px;
+  }
+}
+
+.form-input--incrementTotal {
+  background: $background;
+}
+
+.form-increment {
+  padding: 10px 16px;
+}
+
+.form-radio + label {
+  box-shadow: 0 4px 5px rgba(38, 38, 38, .1);
+}
+
+.form-radio:checked + label {
+  background: $green;
+  border: none;
+  outline: none !important;
+  box-shadow: none !important;
+  
+  .form-option-variant {
+    color: $background !important;
+  }
+}

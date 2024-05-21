@@ -1,0 +1,28 @@
+.megamenu-inner {
+  display: flex;
+  column-gap: 0;
+
+  @media only screen and (max-width: 1400px) {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+  }
+
+  @media only screen and (max-width: 1024px) {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.mega-menuimg {
+  justify-content: right;
+
+  img {
+    // max-height: 80%;
+    aspect-ratio: 1/1;
+    max-width: 80%;
+  }
+}
+
+.header-logo-image {
+    padding-top: 10px;
+}

@@ -1,0 +1,56 @@
+---
+products:
+    new:
+        limit: {{theme_settings.homepage_new_products_count}}
+    featured:
+        limit: {{theme_settings.homepage_featured_products_count}}
+    top_sellers:
+        limit: {{theme_settings.homepage_top_products_count}}
+carousel: {{theme_settings.homepage_show_carousel}}
+---
+
+{{inject "catName" theme_settings.ProductSectionLink}}
+{{inject "shopByCat1" theme_settings.CategoryFirstLink}}
+{{inject "shopByCat2" theme_settings.CategorySecondLink}}
+{{inject "shopByCat3" theme_settings.CategoryThirdLink}}
+{{inject "shopByCat4" theme_settings.CategoryFourLink}}
+
+{{#partial "page"}}
+    {{{region name="home_below_menu"}}}
+    <div class="container-lg">
+    {{#and carousel carousel.slides.length}}
+        {{> components/carousel arrows=theme_settings.homepage_show_carousel_arrows play_pause_button=theme_settings.homepage_show_carousel_play_pause_button prevArrow="prev"}}
+    {{/and}}
+    {{{region name="home_below_carousel"}}}
+    {{> components/custom/products/featured-products style="carousel" products=products.featured}}
+    <section class="home-category-images">
+        <div class="home-category-image">{{{region name="home-category-image-1"}}}</div>
+        <div class="home-category-image">{{{region name="home-category-image-2"}}}</div>
+        <div class="home-category-image">{{{region name="home-category-image-3"}}}</div>
+        <div class="home-category-image">{{{region name="home-category-image-4"}}}</div>
+        <div class="home-category-image">{{{region name="home-category-image-5"}}}</div>
+        <div class="home-category-image">{{{region name="home-category-image-6"}}}</div>
+    </section>
+
+    <section class="static-image-section">
+        <a class="brochures-link" href="https://vpcompanystore.com/print/business-cards/flyers-and-brochures/" title="Purchase brochures"></a>
+        <a class="business-cards-link" href="https://vpcompanystore.com/shop-all/business-cards/" title="purchase business cards"></a>
+        <img src="https://cdn11.bigcommerce.com/s-axbxd8dj5l/images/stencil/original/image-manager/static.png?t=1714683206" alt="">
+    </section>
+
+    <section class="home-steps-section">
+        <div class="home-step">{{{region name="home-step-1"}}}</div>
+        <div class="home-step">{{{region name="home-step-2"}}}</div>
+        <div class="home-step">{{{region name="home-step-3"}}}</div>
+    </section>
+
+    <section class="contact-us-section">
+        <div class="home-contact">{{{region name="home-contact-1"}}}</div>
+        <div class="home-contact">{{{region name="home-contact-2"}}}</div>
+    </section>
+    </div>
+{{/partial}}
+
+
+
+{{> layout/base}}

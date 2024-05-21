@@ -1,0 +1,23 @@
+<div class="custom-featured-products-section">
+    <div class="custom-featured-products">
+        <h2 class="featured-heading">Featured Products</h2>
+        <!-- <p class="featured-subheading">Featured on this week</p> -->
+
+        {{#if style '===' 'carousel'}}
+            {{> components/custom/products/carousel
+                products=products
+                columns=6
+                columns_sm=3
+                list="Featured Products"
+            }}
+        {{else}}
+            {{> components/custom/products/grid
+                products=products.featured
+                columns=theme_settings.products_featured_columns
+                columns_sm=theme_settings.products_featured_columns_sm
+                list="Featured Products"
+            }}
+        {{/if}}
+    </div>
+</div>
+{{{region name="home_below_featured_products"}}}

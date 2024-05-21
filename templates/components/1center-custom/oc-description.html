@@ -1,0 +1,47 @@
+<div class="oc-description-tabs">
+    {{#if product.description}}
+    <div class="oc-description-tabrow">
+        <div class="tab">
+            <h2 class="tab-title">{{lang 'products.description'}}</h2>
+        </div>
+        <div class="oc-productView-description" data-event-type="product">
+            {{{product.description}}}
+        </div>
+    </div>
+    {{/if}}
+    
+    {{#all product.custom_fields theme_settings.show_custom_fields_tabs}}
+    <div class="oc-description-tabrow">
+        <div class="tab">
+            <h2 class="tab-title">{{sanitize theme_settings.pdp-custom-fields-tab-label}}</h2>
+        </div>
+        <div class="oc-productView-description oc-customfield">        
+            <div class="custom-row">
+                {{> components/1center-custom/oc-custom-fields }}
+            </div>
+        </div>
+    </div>
+    {{/all}}
+
+    {{#if product.videos.list.length}}
+    <div class="oc-description-tabrow">
+        <div class="tab">
+            <h2 class="tab-title"> {{lang 'products.videos.header'}}</h2>
+        </div>
+        <div class="oc-productView-description">
+            {{> components/1center-custom/oc-videos product.videos}}
+        </div>
+    </div>
+    {{/if}}
+
+    {{#if product.warranty}}
+    <div class="oc-description-tabrow">
+        <div class="tab">
+            <h2 class="tab-title">{{lang 'products.warranty'}}</h2>
+        </div>
+        <div class="oc-productView-description">
+            {{{product.warranty}}}
+        </div>
+    </div>
+    {{/if}}
+</div>

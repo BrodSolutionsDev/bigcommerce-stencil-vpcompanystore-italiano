@@ -1,0 +1,110 @@
+.heroCarousel {
+  margin-bottom: 0 !important;
+
+  .slick-list {
+    height: unset !important;
+  }
+}
+
+.heroCarousel .heroCarousel-image {
+  object-fit: contain;
+}
+
+.heroCarousel .heroCarousel-image-wrapper {
+  height: unset !important;
+}
+
+@media screen and (max-width: 666px) {
+  .heroCarousel .carousel-play-pause-button,
+  .heroCarousel .slick-dots {
+    bottom: 10px;
+  }
+}
+
+.home-category-images {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+
+  .home-category-image {
+    background: #f0f0f0;
+    aspect-ratio: 1/1;
+    width: 100%;
+  }
+
+  @media only screen and (min-width: 600px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media only screen and (min-width: 1000px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.static-image-section {
+  margin: 25px 0;
+  position: relative;
+  height: fit-content;
+  display: flex;
+  aspect-ratio: 21/8;
+
+  .brochures-link,
+  .business-cards-link {
+    display: block;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+  }
+
+  .brochures-link {
+    width: 65%;
+  }
+
+  .business-cards-link {
+    width: 35%;
+  }
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+  }
+}
+
+.home-steps-section {
+  display: grid;
+  grid-template-columns: 1fr;
+  background: #fff;
+
+  .home-step {
+    aspect-ratio: 7/5;
+    width: 100%;
+  }
+
+  @media only screen and (min-width: 600px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.contact-us-section {
+  margin-top: 25px;
+  display: grid;
+  grid-template-columns: 1fr;
+
+  .home-contact {
+    aspect-ratio: 23/16;
+    width: 100%;
+    &:first-of-type {
+      background: #79add3;
+    }
+  }
+
+  @media only screen and (max-width: 1580px) {
+    margin-bottom: 25px;
+  }
+
+  @media only screen and (min-width: 801px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

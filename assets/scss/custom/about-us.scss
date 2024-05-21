@@ -1,0 +1,40 @@
+.mission-statement-section {
+  display: grid;
+  grid-template-columns: 1fr;
+
+  .mission-statement {
+    width: 100%;
+  }
+
+  @media only screen and (min-width: 600px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.what-we-do-section {
+  display: grid;
+  grid-template-columns: 1fr;
+
+  .what-we-do {
+    width: 100%;
+    background: #fff;
+    padding: 20px;
+  }
+
+  @media only screen and (min-width: 800px) {
+    grid-template-columns: repeat(2, 1fr);
+
+    .what-we-do {
+      padding: 0 70px;
+    }
+  }
+}
+
+.callout-section {
+  background: #fff;
+  width: 100%;
+
+  @media only screen and (min-width: 800px) {
+    padding: 0 200px;
+  }
+}

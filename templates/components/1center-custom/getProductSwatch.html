@@ -1,0 +1,11 @@
+{{#if product}}
+    {{#if product.options}}
+        {{#each product.options}}
+            {{#if partial '==' "swatch"}}
+                {{length values}}
+            {{/if}}
+        {{/each}}
+    {{/if}}
+{{else}}
+    0
+{{/if}}

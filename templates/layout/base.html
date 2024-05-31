@@ -66,10 +66,27 @@
     </head>
     <body class="type-{{page_type}} italiano-layout--{{theme_settings.layout}}">
         <svg data-src="{{cdn 'img/icon-sprite.svg'}}" class="icons-svg-sprite"></svg>
-
-        {{> components/custom/common/header }}
-        {{> components/common/body }}
-        {{> components/custom/common/footer }}
+        <!-- If customer is logged in -->
+        {{#if customer}}
+            {{> components/custom/common/header }}
+            {{> components/common/body }}
+            {{> components/custom/common/footer }}
+        {{else}}
+            <!-- if page is the login page -->
+            {{#if template_file '==' 'pages/auth/login'}}
+                {{> components/custom/common/header }}
+                {{> components/common/body }}
+                {{> components/custom/common/footer }}
+            <!-- if page is the create acount page -->
+            {{else if template_file '==' 'pages/auth/create-account'}}
+                {{> components/custom/common/header }}
+                {{> components/common/body }}
+                {{> components/custom/common/footer }}
+            <!-- Show the login to view store template -->
+            {{else}}
+                {{> components/custom/login-message }}
+            {{/if}}
+        {{/if}}
 
         <script>window.__webpack_public_path__ = "{{cdn 'assets/dist/'}}";</script>
         <script>

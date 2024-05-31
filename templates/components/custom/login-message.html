@@ -1,0 +1,66 @@
+<style>
+  .login-note {
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+    padding: 40px;
+  }
+
+  .login-note--logo {
+    max-width: 180px;
+  }
+
+  .login-note-text {
+    text-align: center;
+    font-size: 20px;
+    margin: 30px 0;
+  }
+
+  #redirectToLogin {
+    background: #003964;
+    color: #fff;
+    padding: 10px 22px;
+    border: 1px solid #003964;
+    border-radius: 15px;
+    transition: all .15s;
+  }
+
+  #redirectToLogin:hover {
+    background: #fff;
+    color: #003964;
+  }
+
+  @media only screen and (max-width: 460px) {
+    .login-note-text {
+      font-size: 16px;
+    }
+  }
+</style>
+
+<section class="login-note">
+  <div class="login-note--logo">
+    <img 
+      class="header-logo-image-unknown-size"
+      src="{{getImage settings.store_logo.image 'logo_size'}}"
+      alt="{{settings.store_logo.title}}"
+      title="{{settings.store_logo.title}}"
+    >
+  </div>
+  <p class="login-note-text">Please log in or create an account using your <span style="color: #003964;">@veterinarian partners corporate email address</span> to access and shop our exclusive products.</p>
+  <button id="redirectToLogin">Login</button>
+</section>
+
+<script>
+  window.addEventListener("load", function() {
+    const redirectToLogin = document.getElementById("redirectToLogin");
+    redirectToLogin.addEventListener("click", function() {
+      if (window.location.pathname !== "/login.php") {
+        window.location.replace("/login.php");
+      }
+    });
+  });
+</script>
